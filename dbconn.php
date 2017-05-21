@@ -1,23 +1,26 @@
 <?php 
-
 class InfoSystem
 {
     //private bConnection = null;
-
     private $srv = null;
     private $usr = null;
     private $pwd = null;
     private $db = null;
-
     function __construct($strSrv, $strUsr, $strPwd, $strDb)
     {
         $this->srv = $strSrv;
         $this->usr = $strUsr;
         $this->pwd = $strPwd;
         $this->db = $strDb;
-
     }
 
+    function __construct()
+    {
+        $this->srv = 'localhost';
+        $this->usr = 'domestic_usrvat';
+        $this->pwd = '5y5t3m45';
+        $this->db = 'domestic_vat';
+    }
    public function getConn()
    {
        $bConnection = new mysqli($this->srv, $this->usr ,  $this->pwd, $this->db);
@@ -33,17 +36,20 @@ class InfoSystem
 		}
         return $bConnection;
    }
-
    public function setMessage($strText)
    {
        echo ('<br> '.$strText);
    }
+
+   public function setCatPersons($txtAddress,$txtCity,$txtFirstName,$txtLastName,$iPersonId){
+    $resp="respuesta desde la BD estos son los datos".$txtAddress.",".$txtCity.",".$txtFirstName.",".$txtLastName.",".$iPersonId;
+    return $resp;
+
+
+   }
 }
-
-$objIS = new InfoSystem('localhost','domestic_usrvat', '5y5t3m45', 'domestic_vat');
+/*$objIS = new InfoSystem(,, , );
 $objIS->getConn();
-$objIS->setMessage('mensaje desde oop y con un constructor');
-
-
+$objIS->setMessage('Hola soy Sebastián');*/
         
 ?>
